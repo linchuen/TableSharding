@@ -25,7 +25,7 @@
         where id = #{id}
     </update>
 
-    <insert id="insert" parameterType="com.cooba.entity.UserEntity">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.cooba.entity.UserEntity">
         INSERT INTO user
         (asset_id, amount, updated_time)
         VALUES( #{assetId}, #{amount}, NOW());
