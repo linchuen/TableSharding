@@ -5,6 +5,7 @@ import com.cooba.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,5 +28,9 @@ public class UserService {
 
     public Optional<UserEntity> selectById(Long id) {
        return userMapper.selectByPrimaryKey(id);
+    }
+
+    public List<UserEntity> selectByAmountBetween(BigDecimal min, BigDecimal max) {
+        return userMapper.selectByAmountBetween(min, max);
     }
 }

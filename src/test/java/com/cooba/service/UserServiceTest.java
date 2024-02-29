@@ -54,4 +54,10 @@ class UserServiceTest {
         Optional<UserEntity> optionalUser = userService.selectById(userEntity.getId());
         System.out.println(optionalUser.get());
     }
+
+    @Test
+    void selectByAmountBetween() {
+        List<UserEntity> userEntityList = userService.selectByAmountBetween(BigDecimal.ZERO, BigDecimal.valueOf(1000));
+        userEntityList.forEach(System.out::println);
+    }
 }

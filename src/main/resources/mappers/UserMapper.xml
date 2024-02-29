@@ -18,6 +18,11 @@
         where asset_id = #{assetId}
     </select>
 
+    <select id="selectByAmountBetween" resultMap="user">
+        select id,asset_id,amount,updated_time from user
+        where amount between #{min} and #{max}
+    </select>
+
     <update id="updateAmount" >
         update user
         set amount = #{amount},
