@@ -2,6 +2,7 @@ package com.cooba.service;
 
 import com.cooba.entity.CountryRecordEntity;
 import com.cooba.enums.CountryEnum;
+import com.github.pagehelper.PageHelper;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,6 +25,12 @@ class CountryRecordServiceTest {
 
     @Test
     void selectByCountryId() {
+        countryRecordService.selectByCountryId(CountryEnum.TAIWAN.getId()).forEach(System.out::println);
+    }
+
+    @Test
+    void selectByCountryIdWithPage() {
+        PageHelper.startPage(1, 2);
         countryRecordService.selectByCountryId(CountryEnum.TAIWAN.getId()).forEach(System.out::println);
     }
 }

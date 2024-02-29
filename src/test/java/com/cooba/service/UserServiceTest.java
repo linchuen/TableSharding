@@ -1,7 +1,9 @@
 package com.cooba.service;
 
+import com.cooba.entity.UserAssetDetail;
 import com.cooba.entity.UserEntity;
 import com.cooba.enums.AssetEnum;
+import com.github.pagehelper.PageHelper;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -48,7 +50,7 @@ class UserServiceTest {
     }
 
     @Test
-    void select() {
+    void selectById() {
         UserEntity userEntity = Instancio.create(UserEntity.class);
         Long insertId = userService.insert(userEntity);
 
@@ -64,6 +66,15 @@ class UserServiceTest {
     @Test
     void selectDetailByAssetId() {
          userService.selectDetailByAssetId(AssetEnum.TWD.getId()).forEach(System.out::println);
+    }
+
+    @Test
+    void selectDetailByAssetIdWithPAge() {
+        PageHelper.startPage(1, 1);
+        userService.selectDetailByAssetId(AssetEnum.TWD.getId()).forEach(System.out::println);
+
+        PageHelper.startPage(2, 1);
+        userService.selectDetailByAssetId(AssetEnum.TWD.getId()).forEach(System.out::println);
     }
 
     @Test
