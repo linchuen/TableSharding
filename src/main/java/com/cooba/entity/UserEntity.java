@@ -1,4 +1,4 @@
-package cooba.entity;
+package com.cooba.entity;
 
 import lombok.Data;
 

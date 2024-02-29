@@ -1,4 +1,4 @@
-package cooba.service;
+package com.cooba.service;
 
 import com.cooba.entity.UserEntity;
 import com.cooba.mapper.UserMapper;
