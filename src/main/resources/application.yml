@@ -12,7 +12,7 @@ spring:
     sharding:
       tables:
         user:
-          actual-data-nodes: ds.user_$->{0..1}
+          actual-data-nodes: ds.user_$->{1..2}
           table-strategy:
             inline:
               sharding-column: id
