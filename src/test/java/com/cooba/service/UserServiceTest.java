@@ -1,6 +1,7 @@
 package com.cooba.service;
 
 import com.cooba.entity.UserEntity;
+import com.cooba.enums.AssetEnum;
 import org.instancio.Instancio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -57,7 +58,16 @@ class UserServiceTest {
 
     @Test
     void selectByAmountBetween() {
-        List<UserEntity> userEntityList = userService.selectByAmountBetween(BigDecimal.ZERO, BigDecimal.valueOf(1000));
-        userEntityList.forEach(System.out::println);
+        userService.selectByAmountBetween(BigDecimal.ZERO, BigDecimal.valueOf(1000)).forEach(System.out::println);
+    }
+
+    @Test
+    void selectDetailByAssetId() {
+         userService.selectDetailByAssetId(AssetEnum.TWD.getId()).forEach(System.out::println);
+    }
+
+    @Test
+    void selectGroupByAssetId() {
+        userService.selectGroupByAssetId().forEach(System.out::println);
     }
 }

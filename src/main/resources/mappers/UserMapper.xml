@@ -9,6 +9,18 @@
         <result column="updated_time" property="updatedTime"/>
     </resultMap>
 
+    <resultMap type="com.cooba.entity.UserAssetDetail" id="detail">
+        <result column="id" property="id"/>
+        <result column="asset_name" property="assetName"/>
+        <result column="amount" property="amount"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+    <resultMap type="com.cooba.entity.UserGroupEntity" id="group">
+        <result column="asset_id" property="assetId"/>
+        <result column="amount_total" property="amountTotal"/>
+    </resultMap>
+
     <select id="selectByPrimaryKey" resultMap="user">
         select id,asset_id,amount,updated_time from user where id = #{id}
     </select>
@@ -23,7 +35,7 @@
         where amount between #{min} and #{max}
     </select>
 
-    <update id="updateAmount" >
+    <update id="updateAmount">
         update user
         set amount = #{amount},
         updated_time = NOW()
@@ -35,4 +47,22 @@
         (asset_id, amount, updated_time)
         VALUES( #{assetId}, #{amount}, NOW());
     </insert>
+
+    <select id="selectDetailByAssetId" resultMap="detail">
+        select user.id ,
+        asset.name as asset_name,
+        user.amount,
+        user.updated_time
+        from user as user
+        inner join asset on user.asset_id = asset.id
+        where user.asset_id = #{assetId}
+    </select>
+
+    <select id="selectGroupByAssetId" resultMap="group">
+        select
+        asset_id,
+        sum(amount) as amount_total
+        from user
+        group by asset_id
+    </select>
 </mapper>

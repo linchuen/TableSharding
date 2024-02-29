@@ -1,6 +1,8 @@
 package com.cooba.service;
 
+import com.cooba.entity.UserAssetDetail;
 import com.cooba.entity.UserEntity;
+import com.cooba.entity.UserGroupEntity;
 import com.cooba.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -32,5 +34,13 @@ public class UserService {
 
     public List<UserEntity> selectByAmountBetween(BigDecimal min, BigDecimal max) {
         return userMapper.selectByAmountBetween(min, max);
+    }
+
+    public List<UserAssetDetail> selectDetailByAssetId(Integer assetId) {
+        return userMapper.selectDetailByAssetId(assetId);
+    }
+
+    public List<UserGroupEntity> selectGroupByAssetId() {
+        return userMapper.selectGroupByAssetId();
     }
 }
