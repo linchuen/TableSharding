@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 對應持久層的介面 -->
+<mapper namespace="com.cooba.mapper.UserMapper">
+    <resultMap type="com.cooba.entity.UserEntity" id="user">
+        <result column="id" property="id"/>
+        <result column="asset_id" property="assetId"/>
+        <result column="amount" property="amount"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+    <select id="selectByPrimaryKey" resultMap="user">
+        select id,asset_id,amount,updated_time from user where id = #{id}
+    </select>
+
+    <select id="selectByAssetId" resultMap="user">
+        select id,asset_id,amount,updated_time from user
+        where asset_id = #{assetId}
+    </select>
+
+    <update id="updateAmount" >
+        update user
+        set status = #{amount},
+        updated_time = NOW()
+        where id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="com.cooba.entity.UserEntity">
+        INSERT INTO user
+        (asset_id, amount, updated_time)
+        VALUES( #{assetId}, #{amount}, NOW());
+    </insert>
+</mapper>

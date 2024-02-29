@@ -1,0 +1,55 @@
+## JDBC logic database name. Through this parameter to connect ShardingSphere-JDBC and ShardingSphere-Proxy.
+#  spring.shardingsphere.database.name= # logic database name, default value: logic_db
+#  spring.shardingsphere.mode.xxx= # mode configuration
+#  spring.shardingsphere.dataSource.xxx= # data source map
+#  spring.shardingsphere.rules.xxx= # rule configurations
+#  spring.shardingsphere.props= # properties
+
+## For single sharding column scenario
+#  spring.shardingsphere.rules.sharding.tables.<table-name>.database-strategy.standard.sharding-column= # Sharding column name
+#  spring.shardingsphere.rules.sharding.tables.<table-name>.database-strategy.standard.sharding-algorithm-name= # Sharding algorithm name
+
+spring:
+  shardingsphere:
+    mode:
+      type: Standalone
+      repository:
+        type: JDBC
+      overwrite: false
+
+    datasource:
+      names: ds
+      ds:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: org.mariadb.jdbc.Driver
+        jdbcUrl: jdbc:mariadb://127.0.0.1:3306/main
+        username: root
+        password: root
+    rules:
+      sharding:
+        tables:
+          user:
+            actual-data-nodes: ds.user_$->{0..1}
+            table-strategy:
+              standard:
+                sharding-column: id
+                sharding-algorithm-name: user_inline
+            key-generator:
+              column: id
+              key-generator-name: snowflake
+
+        key-generators:
+          snowflake:
+            type: SNOWFLAKE
+
+        sharding-algorithms:
+          user_inline:
+            type: INLINE
+            props:
+              algorithm-expression: user_$->{id % 2}
+        binding-tables[0]: user
+
+mybatis:
+  mapper-locations: classpath:mappers/*xml
+  configuration:
+    local-cache-scope: statement
