@@ -5,6 +5,9 @@ import com.cooba.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -18,11 +21,11 @@ public class UserService {
         userMapper.updateAmount(userEntity);
     }
 
-    public void selectByAssetId(Integer assetId) {
-        userMapper.selectByAssetId(assetId);
+    public List<UserEntity> selectByAssetId(Integer assetId) {
+         return userMapper.selectByAssetId(assetId);
     }
 
-    public void select(Long id) {
-        userMapper.selectByPrimaryKey(id);
+    public Optional<UserEntity> selectById(Long id) {
+       return userMapper.selectByPrimaryKey(id);
     }
 }

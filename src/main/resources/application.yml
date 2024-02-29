@@ -1,5 +1,6 @@
 spring:
   shardingsphere:
+    props.sql.show: true
     datasource:
       names: ds
       ds:
