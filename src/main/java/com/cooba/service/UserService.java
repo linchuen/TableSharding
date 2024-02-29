@@ -2,7 +2,7 @@ package com.cooba.service;
 
 import com.cooba.entity.UserAssetDetail;
 import com.cooba.entity.UserEntity;
-import com.cooba.entity.UserGroupEntity;
+import com.cooba.entity.UserGroupDto;
 import com.cooba.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,7 +40,7 @@ public class UserService {
         return userMapper.selectDetailByAssetId(assetId);
     }
 
-    public List<UserGroupEntity> selectGroupByAssetId() {
+    public List<UserGroupDto> selectGroupByAssetId() {
         return userMapper.selectGroupByAssetId();
     }
 }

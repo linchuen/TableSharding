@@ -2,7 +2,7 @@ package com.cooba.mapper;
 
 import com.cooba.entity.UserAssetDetail;
 import com.cooba.entity.UserEntity;
-import com.cooba.entity.UserGroupEntity;
+import com.cooba.entity.UserGroupDto;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,5 +21,5 @@ public interface UserMapper {
 
     List<UserAssetDetail> selectDetailByAssetId(int assetId);
 
-    List<UserGroupEntity> selectGroupByAssetId();
+    List<UserGroupDto> selectGroupByAssetId();
 }

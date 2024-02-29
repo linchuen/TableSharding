@@ -3,10 +3,9 @@ package com.cooba.entity;
 import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Data
-public class UserGroupEntity {
+public class UserGroupDto {
     private Integer assetId;
     private BigDecimal amountTotal;
 }

@@ -16,7 +16,7 @@
         <result column="updated_time" property="updatedTime"/>
     </resultMap>
 
-    <resultMap type="com.cooba.entity.UserGroupEntity" id="group">
+    <resultMap type="com.cooba.entity.UserGroupDto" id="group">
         <result column="asset_id" property="assetId"/>
         <result column="amount_total" property="amountTotal"/>
     </resultMap>
