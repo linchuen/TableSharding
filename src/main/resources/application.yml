@@ -16,7 +16,7 @@ spring:
           table-strategy:
             inline:
               sharding-column: id
-              algorithm-expression: user_$->{id % 2}
+              algorithm-expression: user_$->{id % 2 + 1}
           key-generator:
             column: id
             type: SNOWFLAKE
