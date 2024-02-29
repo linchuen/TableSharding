@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 對應持久層的介面 -->
+<mapper namespace="com.cooba.mapper.CountryRecordMapper">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.cooba.entity.CountryRecordEntity">
+        INSERT INTO main.country_record
+        (country_id, stock, price, updated_time)
+        VALUES(#{countryId}, #{stock}, #{price}, now());
+    </insert>
+
+    <select id="selectByCountryId" resultType="com.cooba.entity.CountryRecordEntity">
+        select record.id ,
+        country.name as countryName,
+        record.stock,
+        record.price,
+        record.updated_time as updatedTime
+        from country_record as record
+        inner join country on record.country_id = country.id
+        where record.country_id = #{countryId}
+    </select>
+</mapper>

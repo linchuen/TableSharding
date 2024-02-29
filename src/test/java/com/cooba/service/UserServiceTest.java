@@ -22,10 +22,10 @@ class UserServiceTest {
         UserEntity userEntity = new UserEntity();
         userEntity.setAssetId(1);
         userEntity.setAmount(BigDecimal.valueOf(100));
-        userService.insert(userEntity);
+        Long insertId = userService.insert(userEntity);
 
-        System.out.println(userEntity.getId());
-        Assertions.assertNotNull(userEntity.getId());
+        System.out.println(insertId);
+        Assertions.assertNotNull(insertId);
     }
 
     @Test
@@ -50,9 +50,9 @@ class UserServiceTest {
     @Test
     void select() {
         UserEntity userEntity = Instancio.create(UserEntity.class);
-        userService.insert(userEntity);
+        Long insertId = userService.insert(userEntity);
 
-        Optional<UserEntity> optionalUser = userService.selectById(userEntity.getId());
+        Optional<UserEntity> optionalUser = userService.selectById(insertId);
         System.out.println(optionalUser.get());
     }
 

@@ -16,8 +16,9 @@ import java.util.Optional;
 public class UserService {
     private final UserMapper userMapper;
 
-    public void insert(UserEntity userEntity) {
+    public Long insert(UserEntity userEntity) {
         userMapper.insert(userEntity);
+        return userEntity.getId();
     }
 
     public void updateAmount(UserEntity userEntity) {

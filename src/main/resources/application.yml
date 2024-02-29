@@ -21,6 +21,16 @@ spring:
           key-generator:
             column: id
             type: SNOWFLAKE
+
+        country_record:
+          actual-data-nodes: ds.country_record_${['taiwan','china','japan','america']}
+          table-strategy:
+            standard:
+              shardingColumn: country_id
+              preciseAlgorithmClassName: com.cooba.shardingAlgorithm.CountryShardingAlgorithm
+          key-generator:
+            column: id
+            type: SNOWFLAKE
       binding-tables: user
 
 mybatis:
