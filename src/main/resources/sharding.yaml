@@ -1,0 +1,37 @@
+mode:
+  type: Standalone
+  repository:
+    type: JDBC
+
+dataSources:
+  ds:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1:3306/main
+    username: root
+    password: root
+
+rules:
+  - !SHARDING
+    tables:
+      user:
+        actualDataNodes: ds.user_$->{1..2}
+        tableStrategy:
+          standard:
+            shardingColumn: id
+            shardingAlgorithmName: user_inline
+        keyGenerateStrategy:
+          column: id
+          keyGeneratorName: snowflake
+
+    shardingAlgorithms:
+      user_inline:
+        type: INLINE
+        props:
+          algorithm-expression: user_$->{id % 2 + 1}
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+
+props:
+  sql-show: true
